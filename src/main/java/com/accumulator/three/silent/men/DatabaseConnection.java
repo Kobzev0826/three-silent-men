@@ -5,9 +5,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class DatabaseConnection {
 
@@ -25,15 +23,8 @@ public class DatabaseConnection {
         mongoCollection = mongoDatabase.getCollection("gas_stations");
     }
 
-    public void writeToDatabaseOne(GasStation gasStation) {
-        Document document = new Document();
-        document.put("address", gasStation.getAddress());
-        document.put("latitude", gasStation.getLatitude());
-        document.put("longtitude", gasStation.getLongtitude());
-        document.put("name", gasStation.getName());
-        document.put("country", gasStation.getCountry());
-        document.put("phone", gasStation.getPhone());
-        document.put("region", gasStation.getRegion());
+    public void writeToDatabaseOne(Map<String, Object> gasStation) {
+        Document document = new Document(gasStation);
         try{
             mongoCollection.insertOne(document);
         }catch(Exception e) {
@@ -42,19 +33,12 @@ public class DatabaseConnection {
         }
     }
 
-    public void writeToDatabaseMany(List<GasStation> gasStations) {
+    public void writeToDatabaseMany(List<Map<String, Object>> gasStations) {
         List<Document> documents = new ArrayList<>();
-        for (Iterator<GasStation> iterator = gasStations.listIterator(); iterator.hasNext(); ) {
-            Document document = new Document();
-            GasStation gasStation = iterator.next();
-            document.put("address", gasStation.getAddress());
-            document.put("latitude", gasStation.getLatitude());
-            document.put("longtitude", gasStation.getLongtitude());
-            document.put("name", gasStation.getName());
-            document.put("country", gasStation.getCountry());
-            document.put("phone", gasStation.getPhone());
-            document.put("region", gasStation.getRegion());
-            documents.add(document);
+        for (Iterator<Map<String, Object>> iterator = gasStations.listIterator(); iterator.hasNext();) {
+            Map<String, Object> map = iterator.next();
+            map = MapFilter.filterMap(map, Arrays.asList("latitude", "longtitude"));
+            documents.add(new Document(map));
         }
         try{
             mongoCollection.insertMany(documents);

@@ -1,6 +1,5 @@
 package com.accumulator.three.silent.men.fileread;
 
-import com.accumulator.three.silent.men.GasStation;
 import com.opencsv.CSVReader;
 import org.springframework.stereotype.Service;
 
@@ -10,47 +9,47 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CSVParser {
 
-    public static List<GasStation> readAll(Reader reader) throws IOException {
-        List<GasStation> gasStations = new ArrayList<>();
+    public static List<Map<String, Object>> readAll(Reader reader) throws IOException {
+        List<Map<String, Object>> gasStations = new ArrayList<>();
         CSVReader csvReader = new CSVReader(reader, '|');
+        String[] titles = csvReader.readNext();
         List<String[]> csvList = csvReader.readAll();
-        for (String[] listElement : csvList) {
-
-            GasStation gasStation = new GasStation();
-            gasStation.setAddress(listElement[0]);
-            gasStation.setLatitude(listElement[1]);
-            gasStation.setLongtitude(listElement[2]);
-            gasStation.setName(listElement[3]);
-            gasStation.setCountry(listElement[4]);
-            gasStation.setPhone(listElement[5]);
-            gasStation.setRegion(listElement[6]);
-            gasStations.add(gasStation);
+        
+        for (int i = 1; i < csvList.size(); i++) {
+            String values[] = csvList.get(i);
+            Map<String, Object> map = new HashMap<>();
+            for(int j = 0; j < titles.length; j++) {
+                map.put(titles[j], values[j]);
+            }
+            gasStations.add(map);
         }
         reader.close();
         csvReader.close();
         return gasStations;
     }
 
-    public static List<GasStation>  readAllExample() throws IOException, URISyntaxException {
+    public static List<Map<String, Object>>  readAllExample() throws IOException, URISyntaxException {
         Reader reader = Files.newBufferedReader(Paths.get(
                 ClassLoader.getSystemResource("azs.csv").toURI()));
         return readAll(reader);
     }
 
-    public static void printData (List<GasStation> data){
-        for(GasStation gasStation : data){
+    public static void printData (List<Map<String, Object>> data){
+        for(Map<String, Object> gasStation : data){
             System.out.println(gasStation);
         }
     }
 
     public static void parser() throws IOException, URISyntaxException {
 
-        List<GasStation> testData = readAllExample();
+        List<Map<String, Object>> testData = readAllExample();
         printData(testData);
     }
 
