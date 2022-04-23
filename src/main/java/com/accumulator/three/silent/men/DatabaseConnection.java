@@ -37,7 +37,7 @@ public class DatabaseConnection {
         List<Document> documents = new ArrayList<>();
         for (Iterator<Map<String, Object>> iterator = gasStations.listIterator(); iterator.hasNext();) {
             Map<String, Object> map = iterator.next();
-            map = MapFilter.filterMap(map, Arrays.asList("latitude", "longtitude"));
+//            map = MapFilter.filterMap(map, Arrays.asList("latitude", "longtitude"));
             documents.add(new Document(map));
         }
         try{

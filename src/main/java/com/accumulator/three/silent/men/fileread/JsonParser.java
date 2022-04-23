@@ -14,34 +14,16 @@ import java.util.List;
 import java.util.Map;
 
 public class JsonParser {
-    /*
-        public static void main(String[] args) throws Exception {
-            JSONObject jsonObject = (JSONObject) readJsonSimpleDemo("src/main/resources/azs.json");
-            System.out.println(jsonObject);
 
-        }
-
-        public static Object readJsonSimpleDemo(String filename) throws Exception {
-            // create object mapper instance
-            ObjectMapper mapper = new ObjectMapper();
-
-            JSONParser jsonParser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(filename));
-            // convert JSON file to map
-            //List<> employeeList = Arrays.asList(mapper.readValue(json, Employee[].class));
-            return jsonObject;
-        }
-    */
-    public static void main(String[] args) {
-        //JSON parser object to parse read file
+	public static List<Map<String, Object>> readlAll() {
+		//JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
+        List<Map<String, Object>> gasStations = new ArrayList<>();
 
         try (FileReader reader = new FileReader("src/main/resources/azs.json")) {
-            List<Map<String, Object>> gasStations = new ArrayList<>();
             //Read JSON file
             Object obj = jsonParser.parse(reader);
 
-            JSONObject Data = new JSONObject();
             JSONArray list = (JSONArray) obj;
             for ( int i=0; i<list.size(); i++){
                 JSONObject jsonObject = (JSONObject) list.get(i);
@@ -53,11 +35,6 @@ public class JsonParser {
                 gasStations.add(map);
             }
 
-            System.out.println(gasStations.get(0));
-
-
-            //Map<String,Object> map = list.stream().collect(Collectors.toMap());
-
 
 
         } catch (FileNotFoundException e) {
@@ -67,5 +44,7 @@ public class JsonParser {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-    }
+        
+        return gasStations;
+	}
 }
