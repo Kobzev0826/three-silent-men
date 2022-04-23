@@ -14,7 +14,7 @@ import static com.accumulator.three.silent.men.fileread.CnfigYml.Yml_parse;
 
 public class Manager {
 
-    public void start(String ConfigDataPath) throws IOException, URISyntaxException {
+    public static void start(String ConfigDataPath) throws IOException, URISyntaxException {
 
         Map<String, Object> data  = Yml_parse(ConfigDataPath);
         List<String> validAttributes = (List<String>) data.get("validAttributes");

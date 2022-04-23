@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.Map;
 
 public class JsonParser {
-    public static List<Map<String, Object>> main(String[] args) {
+    public static List<Map<String, Object>> readAll(String filename) {
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
         List<Map<String, Object>> gasStations = new ArrayList<>();
 
-        try (FileReader reader = new FileReader("src/main/resources/azs.json")) {
+        try (FileReader reader = new FileReader(filename)) {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
 

@@ -13,7 +13,7 @@ public class DatabaseConnection {
     private final int port;
     private MongoClient mongoClient;
     private MongoDatabase mongoDatabase;
-    private MongoCollection<Document> mongoCollection;
+    private static MongoCollection<Document> mongoCollection;
 
     public DatabaseConnection(String url, int port) {
         this.url = url;
@@ -33,7 +33,7 @@ public class DatabaseConnection {
         }
     }
 
-    public void writeToDatabaseMany(List<Map<String, Object>> gasStations) {
+    public static void writeToDatabaseMany(List<Map<String, Object>> gasStations) {
         List<Document> documents = new ArrayList<>();
         for (Iterator<Map<String, Object>> iterator = gasStations.listIterator(); iterator.hasNext();) {
             Map<String, Object> map = iterator.next();

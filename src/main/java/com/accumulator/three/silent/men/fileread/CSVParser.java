@@ -47,10 +47,5 @@ public class CSVParser {
         }
     }
 
-    public static void parser() throws IOException, URISyntaxException {
-
-        List<Map<String, Object>> testData = readAllExample();
-        printData(testData);
-    }
 
 }
