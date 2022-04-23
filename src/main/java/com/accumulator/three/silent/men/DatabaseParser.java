@@ -1,15 +1,16 @@
 package com.accumulator.three.silent.men;
 
-import com.opencsv.CSVReader;
-import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.io.Reader;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 public class DatabaseParser {
 
@@ -23,20 +24,19 @@ public class DatabaseParser {
         connectionProperties.put("password", password);
         connection = DriverManager.getConnection(url, connectionProperties);
 
-        String query = "SELECT * FROM ?";
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, table);
-        ResultSet resultSet = preparedStatement.executeQuery();
+        String query = "SELECT * FROM " + table;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
         String[] titles = new String[resultSetMetaData.getColumnCount()];
         for (int i = 0; i < titles.length; i++) {
-            titles[i] = resultSetMetaData.getColumnName(i);
+            titles[i] = resultSetMetaData.getColumnName(i+1);
         }
 
         while(resultSet.next()) {
             Map<String, Object> map = new HashMap<>();
             for (int i = 0; i < titles.length; i++) {
-                map.put(titles[i], resultSet.getString(i));
+                map.put(titles[i], resultSet.getString(i+1));
             }
             gasStations.add(map);
         }
