@@ -20,7 +20,7 @@ public class SwichParser {
 
             case"json":
                 ParseData = JsonParser.readAll((String) SourcePar.get("addr"));
-                System.out.println("test");
+                System.out.println(ParseData);
         }
         return ParseData;
     }

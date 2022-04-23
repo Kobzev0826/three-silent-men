@@ -24,6 +24,7 @@ public class JsonParser {
             Object obj = jsonParser.parse(reader);
 
             JSONArray list = (JSONArray) obj;
+            //System.out.println(list);
             for ( int i=0; i<list.size(); i++){
                 JSONObject jsonObject = (JSONObject) list.get(i);
                 Map<String, Object> map = new HashMap<>();
@@ -43,4 +44,11 @@ public class JsonParser {
         
         return gasStations;
     }
+
+    public static void main(String [] arg){
+
+        List<Map<String, Object>> dat = readAll ("src/main/resources/azs.json");
+        System.out.println(dat);
+    }
+
 }

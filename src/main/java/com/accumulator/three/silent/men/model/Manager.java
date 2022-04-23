@@ -20,7 +20,7 @@ public class Manager {
         Map<String, Object> data  = Yml_parse(ConfigDataPath);
         List<String> validAttributes = (List<String>) data.get("validAttributes");
 
-
+        DatabaseConnection databaseConnection = new DatabaseConnection("localhost", 27017);
 
         //цикл по указанным источникам
         for (int i=1; i<data.size();i++){
@@ -29,6 +29,7 @@ public class Manager {
             List<Map<String, Object>> ParseData = SwichParser.Swich(source);
             ParseData = ParseData.stream().map(x -> MapFilter.filterMap(x, validAttributes)).collect(Collectors.toList());
             //ParseData = (List<Map<String, Object>>) MapFilter.filterMap((Map<String, Object>) ParseData,validAttributes);
+            System.out.println("test before connect database");
             DatabaseConnection.writeToDatabaseMany(ParseData);
 
         }
