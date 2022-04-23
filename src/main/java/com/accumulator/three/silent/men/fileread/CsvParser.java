@@ -1,6 +1,7 @@
 package com.accumulator.three.silent.men.fileread;
 
 import com.opencsv.CSVReader;
+import lombok.Getter;
 import org.springframework.stereotype.Service;
 
 import java.io.Reader;
@@ -10,8 +11,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Setter
+@Getter
 @Service
 public class CsvParser {
+
+    private String name;
 
     public static List<String[]> readAll(Reader reader) throws Exception {
         CSVReader csvReader = new CSVReader(reader);
@@ -22,9 +27,10 @@ public class CsvParser {
         return list;
     }
 
-    public static List<String[]>  readAllExample() throws Exception {
+    public static List<String[]>  readAll(String name) throws Exception {
         Reader reader = Files.newBufferedReader(Paths.get(
-                ClassLoader.getSystemResource("azs.csv").toURI()));
+                ClassLoader.getSystemResource(name).toURI()));
+
         return readAll(reader);
     }
 
@@ -36,7 +42,7 @@ public class CsvParser {
 
     public static void parser() throws Exception {
 
-        List<String[]> test_data = readAllExample();
+        List<String[]> test_data = readAll("azs.csv");
         print_data(test_data);
     }
 
