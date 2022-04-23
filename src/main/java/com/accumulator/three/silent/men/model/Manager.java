@@ -7,6 +7,7 @@ import com.accumulator.three.silent.men.MapFilter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -15,7 +16,7 @@ import static com.accumulator.three.silent.men.fileread.CnfigYml.Yml_parse;
 
 public class Manager {
 
-    public static void start(String ConfigDataPath) throws IOException, URISyntaxException {
+    public static void start(String ConfigDataPath) throws IOException, URISyntaxException, SQLException {
 
         Map<String, Object> data  = Yml_parse(ConfigDataPath);
         List<String> validAttributes = (List<String>) data.get("validAttributes");
