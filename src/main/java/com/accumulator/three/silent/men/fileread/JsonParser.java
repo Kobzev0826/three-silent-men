@@ -43,12 +43,15 @@ public class JsonParser {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
 
-            JSONArray jsonArray = (JSONArray) obj;
-            System.out.println(jsonArray);
+            JSONObject Data = new JSONObject();
+            JSONArray list = (JSONArray) obj;
+            for ( int i=0; i<list.size(); i++){
 
-            for(int i=0; i <jsonArray.size();i++){
-
+                Data = (JSONObject) list.get(i);
+                throw
+                Map<String,Object> =  Data.keySet()
             }
+
 
             //Map<String,Object> map = list.stream().collect(Collectors.toMap());
 
