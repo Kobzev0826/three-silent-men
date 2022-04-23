@@ -35,9 +35,9 @@ public class CSVParser {
         return gasStations;
     }
 
-    public static List<Map<String, Object>>  readAllExample() throws IOException, URISyntaxException {
+    public static List<Map<String, Object>>  readAllExample(String filename) throws IOException, URISyntaxException {
         Reader reader = Files.newBufferedReader(Paths.get(
-                ClassLoader.getSystemResource("azs.csv").toURI()));
+                ClassLoader.getSystemResource(filename).toURI()));
         return readAll(reader);
     }
 

@@ -14,9 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 public class JsonParser {
-
-	public static List<Map<String, Object>> readlAll() {
-		//JSON parser object to parse read file
+    public static List<Map<String, Object>> main(String[] args) {
+        //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
         List<Map<String, Object>> gasStations = new ArrayList<>();
 
@@ -34,9 +33,6 @@ public class JsonParser {
                 }
                 gasStations.add(map);
             }
-
-
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -46,5 +42,5 @@ public class JsonParser {
         }
         
         return gasStations;
-	}
+    }
 }
