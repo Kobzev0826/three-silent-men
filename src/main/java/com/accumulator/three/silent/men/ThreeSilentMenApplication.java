@@ -1,6 +1,6 @@
 package com.accumulator.three.silent.men;
 
-import com.accumulator.three.silent.men.fileread.csv_parser;
+import com.accumulator.three.silent.men.fileread.CsvParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -21,6 +21,6 @@ public class ThreeSilentMenApplication  implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("test");
-		csv_parser.parser();
+		CsvParser.parser();
 	}
 }
