@@ -16,11 +16,14 @@ public class SwichParser {
         switch (type) {
 
             case "CSV":
-                ParseData = CSVParser.readAllExample((String) SourcePar.get("addr"));
+                String addr = (String) SourcePar.get("addr");
+                ParseData = CSVParser.readAll(addr);
+                break;
 
             case"json":
                 ParseData = JsonParser.readAll((String) SourcePar.get("addr"));
-                System.out.println(ParseData);
+                //System.out.println(ParseData);
+                break;
         }
         return ParseData;
     }
