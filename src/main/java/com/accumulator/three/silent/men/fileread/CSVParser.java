@@ -1,6 +1,7 @@
 package com.accumulator.three.silent.men.fileread;
 
 import com.opencsv.CSVReader;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ import java.util.Map;
 @Service
 public class CSVParser {
 
-    public static List<Map<String, Object>> readAll(Reader reader) throws IOException {
+    public static @NotNull List<Map<String, Object>> readAll(Reader reader) throws IOException {
         List<Map<String, Object>> gasStations = new ArrayList<>();
         CSVReader csvReader = new CSVReader(reader, '|');
         String[] titles = csvReader.readNext();

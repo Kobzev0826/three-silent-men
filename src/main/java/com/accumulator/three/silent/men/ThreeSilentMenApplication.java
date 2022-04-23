@@ -20,6 +20,6 @@ public class ThreeSilentMenApplication  implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Manager.start("src/main/resources");
+		Manager.start("src/main/resources/config.yaml");
 	}
 }
