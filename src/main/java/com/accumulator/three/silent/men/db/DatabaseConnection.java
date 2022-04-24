@@ -28,10 +28,10 @@ public class DatabaseConnection {
         mongoCollection = mongoDatabase.getCollection("gas_stations");
     }
 
-    public void writeToDatabaseOne(Map<String, Object> gasStation) {
+    public void writeToDatabaseOne(Map<String, Object> gasStation, String unique) {
         Document document = new Document(gasStation);
         //Проверка на дубликаты
-        if(mongoCollection.find(eq("name", (String) document.get("name"))).first() != null)
+        if(mongoCollection.find(eq(unique, (String) document.get(unique))).first() != null)
             return;
         try{
             mongoCollection.insertOne(document);
@@ -41,7 +41,7 @@ public class DatabaseConnection {
         }
     }
 
-    public void writeToDatabaseMany(List<Map<String, Object>> gasStations) {
+    public void writeToDatabaseMany(List<Map<String, Object>> gasStations, String unique) {
         List<Document> documents = new ArrayList<>();
         for (Iterator<Map<String, Object>> iterator = gasStations.listIterator(); iterator.hasNext();) {
             Map<String, Object> map = iterator.next();
@@ -49,7 +49,7 @@ public class DatabaseConnection {
         }
         try{
             for(Document document : documents)
-                writeToDatabaseOne(document);
+                writeToDatabaseOne(document, unique);
 
         }catch(Exception e) {
             //TODO appropriate error handling
