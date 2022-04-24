@@ -1,15 +1,16 @@
-//package com.accumulator.three.silent.men.parsers;
-//
-//import org.json.simple.JSONArray;
-//import org.json.simple.JSONObject;
-//import org.json.simple.parser.JSONParser;
-//import org.json.simple.parser.ParseException;
-//import org.w3c.dom.Document;
-//import org.xml.sax.SAXException;
-//
-//import javax.xml.parsers.DocumentBuilderFactory;
-//import javax.xml.parsers.ParserConfigurationException;
-//import java.io.FileNotFoundException;
+package com.accumulator.three.silent.men.parsers;
+
+import com.thoughtworks.xstream.XStream;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.FileNotFoundException;
 //import java.io.FileReader;
 //import java.io.IOException;
 //import java.util.ArrayList;
@@ -22,6 +23,12 @@
 //    public static List<Map<String, Object>> readAll(String filename) {
 //        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 //        List<Map<String, Object>> gasStations = new ArrayList<>();
+//
+//        XStream xStream = new XStream();
+//        xStream.alias("map", java.util.Map.class);
+//
+//        @SuppressWarnings("unchecked")
+//        Map<String,Object> xmldata = (Map<String, Object>)xStream.fromXML();
 //
 //        try (FileReader reader = new FileReader(filename)) {
 //            Document document = documentBuilderFactory.newDocumentBuilder().parse(filename);
