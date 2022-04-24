@@ -1,0 +1,23 @@
+#source1:
+# type: "CSV"
+# addr: "src/main/resources/azs.csv"
+# separator: "|"
+
+#source1:
+# type: "DB"
+# addr: "jdbc:postgresql://localhost:5432/best_hack"
+# login: "postgres"
+# password: "1"
+# table: "gas_stations"
+
+source1:
+ type: "json"
+ addr: "src/main/resources/azs.json"
+
+validAttributes:
+ - address
+ - latitude
+ - longtitude
+ - name
+ - country
+ - phone
