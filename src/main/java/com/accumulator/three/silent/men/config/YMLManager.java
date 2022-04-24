@@ -21,18 +21,18 @@ public class YMLManager {
 
         Map<String, Object> data  = YMLParser.parseYML(configFilePath);
         List<String> validAttributes = (List<String>) data.get("validAttributes");
-
+        String UniqueValue = (String) data.get("UniqueValue");
         //DatabaseConnection databaseConnection = new DatabaseConnection("localhost", 27017);
 
         //цикл по указанным источникам
-        for (int i=1; i<data.size();i++){
+        for (int i=1; i<data.size()-1;i++){
             String name = "source" + i;
             Map<String, Object> source = (Map<String, Object>) data.get(name);
             List<Map<String, Object>> ParseData = parseSource(source);
             ParseData = ParseData.stream().map(x -> MapFilter.filterMap(x, validAttributes)).collect(Collectors.toList());
             //ParseData = (List<Map<String, Object>>) MapFilter.filterMap((Map<String, Object>) ParseData,validAttributes);
             //System.out.println("test before connect database");
-            databaseConnection.writeToDatabaseMany(ParseData);
+            databaseConnection.writeToDatabaseMany(ParseData,UniqueValue);
 
         }
     }
