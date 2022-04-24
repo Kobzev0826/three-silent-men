@@ -1,4 +1,4 @@
-package com.accumulator.three.silent.men;
+package com.accumulator.three.silent.men.config;
 
 import java.util.HashMap;
 import java.util.List;

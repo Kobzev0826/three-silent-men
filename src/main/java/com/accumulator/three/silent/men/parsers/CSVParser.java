@@ -1,4 +1,4 @@
-package com.accumulator.three.silent.men.fileread;
+package com.accumulator.three.silent.men.parsers;
 
 import com.opencsv.CSVReader;
 import org.jetbrains.annotations.NotNull;
@@ -6,10 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,18 +39,4 @@ public class CSVParser {
         List<Map<String, Object>> gasStations = readAll(reader);
         return gasStations;
     }*/
-
-    public static void printData (List<Map<String, Object>> data){
-        for(Map<String, Object> gasStation : data){
-            System.out.println(gasStation);
-        }
-    }
-
-    public static void main(String [] arg) throws IOException, URISyntaxException {
-
-        //List<Map<String, Object>> dat = readAllExample ("azs.csv");
-        List<Map<String, Object>> dat = readAll("src/main/resources/azs.csv");
-        System.out.println(dat);
-    }
-
 }

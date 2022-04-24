@@ -1,11 +1,14 @@
-package com.accumulator.three.silent.men;
+package com.accumulator.three.silent.men.db;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class DatabaseConnection {
 
@@ -37,7 +40,6 @@ public class DatabaseConnection {
         List<Document> documents = new ArrayList<>();
         for (Iterator<Map<String, Object>> iterator = gasStations.listIterator(); iterator.hasNext();) {
             Map<String, Object> map = iterator.next();
-//            map = MapFilter.filterMap(map, Arrays.asList("latitude", "longtitude"));
             documents.add(new Document(map));
         }
         try{

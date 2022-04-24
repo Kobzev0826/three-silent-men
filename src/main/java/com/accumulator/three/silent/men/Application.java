@@ -1,25 +1,22 @@
 package com.accumulator.three.silent.men;
 
-import com.accumulator.three.silent.men.model.Manager;
+import com.accumulator.three.silent.men.config.YMLManager;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.List;
-
 @SpringBootApplication
-public class ThreeSilentMenApplication  implements CommandLineRunner {
-
+public class Application implements CommandLineRunner {
 
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(ThreeSilentMenApplication.class, args);
+		SpringApplication.run(Application.class, args);
 
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		Manager.start("src/main/resources/config.yaml");
+		YMLManager.manage("src/main/resources/config.yaml");
 	}
 }

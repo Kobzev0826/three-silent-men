@@ -1,11 +1,10 @@
-package com.accumulator.three.silent.men.fileread;
+package com.accumulator.three.silent.men.parsers;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,11 +20,9 @@ public class JsonParser {
 
         try (FileReader reader = new FileReader(filename)) {
             //Read JSON file
-            Object obj = jsonParser.parse(reader);
 
-            JSONArray list = (JSONArray) obj;
-            //System.out.println(list);
-            for ( int i=0; i<list.size(); i++){
+            JSONArray list = (JSONArray) jsonParser.parse(reader);
+            for (int i = 0; i < list.size(); i++){
                 JSONObject jsonObject = (JSONObject) list.get(i);
                 Map<String, Object> map = new HashMap<>();
                 for(Object key : jsonObject.keySet()) {
@@ -34,21 +31,10 @@ public class JsonParser {
                 }
                 gasStations.add(map);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (IOException|ParseException e) {
             e.printStackTrace();
         }
         
         return gasStations;
     }
-
-    public static void main(String [] arg){
-
-        List<Map<String, Object>> dat = readAll ("src/main/resources/azs.json");
-        System.out.println(dat);
-    }
-
 }
