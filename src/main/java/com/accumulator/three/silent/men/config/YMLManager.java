@@ -46,7 +46,7 @@ public class YMLManager {
             case "CSV":
                 //String addr = (String) source.get("addr");
                 parsedData = CSVParser.readAll((String) source.get("addr"),
-                        (String) source.get("separator"));
+                        (char) source.get("separator"));
                 break;
 
             case"json":
