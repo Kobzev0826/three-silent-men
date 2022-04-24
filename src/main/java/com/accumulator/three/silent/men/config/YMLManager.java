@@ -31,8 +31,8 @@ public class YMLManager {
             List<Map<String, Object>> ParseData = parseSource(source);
             ParseData = ParseData.stream().map(x -> MapFilter.filterMap(x, validAttributes)).collect(Collectors.toList());
             //ParseData = (List<Map<String, Object>>) MapFilter.filterMap((Map<String, Object>) ParseData,validAttributes);
-            System.out.println("test before connect database");
-            databaseConnection.writeToDatabaseMany(ParseData);
+            //System.out.println("test before connect database");
+            DatabaseConnection.writeToDatabaseMany(ParseData);
 
         }
     }
@@ -44,9 +44,9 @@ public class YMLManager {
         switch (type) {
 
             case "CSV":
-                //String addr = (String) source.get("addr");
+                char separator = source.get("separator").toString().charAt(0);
                 parsedData = CSVParser.readAll((String) source.get("addr"),
-                        (char) source.get("separator"));
+                        separator);
                 break;
 
             case"json":

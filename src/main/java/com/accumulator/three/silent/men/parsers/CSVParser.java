@@ -40,6 +40,10 @@ public class CSVParser {
         return gasStations;
     }*/
 
-
+    public static void main(String[] args) throws IOException {
+        String separator = "|";
+        List<Map<String, Object>> gasStations = new ArrayList<>();
+        gasStations = readAll("src/main/resources/azs.csv",separator.charAt(0));
+    }
 
 }
