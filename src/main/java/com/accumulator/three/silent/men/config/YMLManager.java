@@ -32,7 +32,7 @@ public class YMLManager {
             ParseData = ParseData.stream().map(x -> MapFilter.filterMap(x, validAttributes)).collect(Collectors.toList());
             //ParseData = (List<Map<String, Object>>) MapFilter.filterMap((Map<String, Object>) ParseData,validAttributes);
             System.out.println("test before connect database");
-            DatabaseConnection.writeToDatabaseMany(ParseData);
+            databaseConnection.writeToDatabaseMany(ParseData);
 
         }
     }
