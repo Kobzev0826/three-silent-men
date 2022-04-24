@@ -32,18 +32,4 @@ public class CSVParser {
         csvReader.close();
         return gasStations;
     }
-/*
-    public static List<Map<String, Object>>  readAllExample(String filename) throws IOException, URISyntaxException {
-        Reader reader = Files.newBufferedReader(Paths.get(
-                ClassLoader.getSystemResource(filename).toURI()));
-        List<Map<String, Object>> gasStations = readAll(reader);
-        return gasStations;
-    }*/
-
-    public static void main(String[] args) throws IOException {
-        String separator = "|";
-        List<Map<String, Object>> gasStations = new ArrayList<>();
-        gasStations = readAll("src/main/resources/azs.csv",separator.charAt(0));
-    }
-
 }
