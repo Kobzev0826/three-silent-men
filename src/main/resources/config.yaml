@@ -1,7 +1,7 @@
-#source1:
-# type: "CSV"
-# addr: "src/main/resources/azs.csv"
-# separator: "|"
+source1:
+ type: "CSV"
+ addr: "src/main/resources/azs.csv"
+ separator: "|"
 
 #source1:
 # type: "DB"
@@ -10,7 +10,7 @@
 # password: "1"
 # table: "gas_stations"
 
-source1:
+source2:
  type: "json"
  addr: "src/main/resources/azs.json"
 
