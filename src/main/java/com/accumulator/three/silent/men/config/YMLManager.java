@@ -17,18 +17,18 @@ public class YMLManager {
     public static void manage(String configFilePath) throws IOException, SQLException {
 
         DatabaseConnection databaseConnection = new DatabaseConnection("localhost", 27017);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + validAttributes);
+        //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!" + validAttributes);
 
         Map<String, Object> data  = YMLParser.parseYML(configFilePath);
         List<String> validAttributes = (List<String>) data.get("validAttributes");
 
-        DatabaseConnection databaseConnection = new DatabaseConnection("localhost", 27017);
+        //DatabaseConnection databaseConnection = new DatabaseConnection("localhost", 27017);
 
         //цикл по указанным источникам
         for (int i=1; i<data.size();i++){
             String name = "source" + i;
             Map<String, Object> source = (Map<String, Object>) data.get(name);
-            List<Map<String, Object>> ParseData = SwichParser.Swich(source);
+            List<Map<String, Object>> ParseData = parseSource(source);
             ParseData = ParseData.stream().map(x -> MapFilter.filterMap(x, validAttributes)).collect(Collectors.toList());
             //ParseData = (List<Map<String, Object>>) MapFilter.filterMap((Map<String, Object>) ParseData,validAttributes);
             System.out.println("test before connect database");
@@ -44,8 +44,9 @@ public class YMLManager {
         switch (type) {
 
             case "CSV":
-                String addr = (String) source.get("addr");
-                parsedData = CSVParser.readAll(addr);
+                //String addr = (String) source.get("addr");
+                parsedData = CSVParser.readAll((String) source.get("addr"),
+                        (String) source.get("separator"));
                 break;
 
             case"json":

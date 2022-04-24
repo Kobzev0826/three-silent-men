@@ -14,9 +14,9 @@ import java.util.Map;
 @Service
 public class CSVParser {
 
-    public static @NotNull List<Map<String, Object>> readAll(String filename) throws IOException {
+    public static @NotNull List<Map<String, Object>> readAll(String filename,String separator) throws IOException {
         List<Map<String, Object>> gasStations = new ArrayList<>();
-        CSVReader csvReader = new CSVReader(new FileReader(filename), '|');
+        CSVReader csvReader = new CSVReader(new FileReader(filename), separator);
         String[] titles = csvReader.readNext();
         List<String[]> csvList = csvReader.readAll();
         

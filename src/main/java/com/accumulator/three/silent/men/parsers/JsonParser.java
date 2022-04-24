@@ -27,7 +27,7 @@ public class JsonParser {
                 Map<String, Object> map = new HashMap<>();
                 for(Object key : jsonObject.keySet()) {
                     String stringKey = (String) key;
-                    map.put(stringKey, jsonObject.get(key));
+                    map.put(stringKey, jsonObject.get(key).toString());
                 }
                 gasStations.add(map);
             }
